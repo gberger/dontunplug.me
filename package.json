@@ -19,8 +19,10 @@
   "homepage": "https://github.com/gberger/dontunplug.me",
   "dependencies": {
     "body-parser": "^1.9.1",
+    "exec": "^0.1.2",
     "express": "^4.10.0",
     "request": "^2.46.0",
+    "streamifier": "^0.1.0",
     "twilio": "^1.7.0"
   }
 }
