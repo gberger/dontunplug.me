@@ -126,8 +126,8 @@ html {
 
 
 #camera-dummy { 
-  width: 640px; 
-  height: 480px; 
+  width: 480px; 
+  height: 360px; 
   visibility: hidden; 
   position: absolute; 
   top: 0; 
