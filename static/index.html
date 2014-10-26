@@ -14,6 +14,7 @@
 	<meta name="descrption" content="Get alerted when your device is unplugged">
 </head>
 <body ng-controller="AppCtrl">
+
 	<div class="container">
 
 		<h1>dont unplug me</h1>
@@ -22,8 +23,10 @@
 			Get alerted when your device is unplugged
 		</p>
 
-		<p>
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit assumenda deleniti quo ratione ullam, amet laborum quas, eaque nostrum praesentium! Nobis repellendus consequatur qui, velit soluta! Fugit tempora, distinctio mollitia.
+		<ul>
+			<li>Enter your information below so you can receive alerts.</li>
+			<li>Authorize the webcam access so you can receive pictures.</li>
+			<li>After locking, switch away from this page or password-protect your computer.</li>
 		</p>
 	
 		<div ng-if="!isSupported">
@@ -107,9 +110,11 @@
 			}
 
 			$scope.trigger = function() {
+				$scope.triggered = true;
 				var data = $scope.data;
 
 				audio.play();
+
 				if(Webcam.live && Webcam.loaded) {
 					Webcam.snap(function(dataUri) {
 						data.image = dataUri;
