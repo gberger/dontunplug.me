@@ -25,14 +25,12 @@
 
 			<input type="tel">
 
-			<div>
-				<div class="locksize">
-					<a ng-if="!locked" ng-click="lock()"><i class="fa fa-unlock fa-5x"></i> Lock</a>
-					<a ng-if="locked" ng-click="unlock()"><i class="fa fa-lock fa-5x"></i>Unlock</a>
-				</div>
-			</div>
+			<p>
+				<a ng-if="!locked" ng-click="lock()"><i class="fa fa-unlock fa-6x"></i> Lock</a>
+				<a ng-if="locked" ng-click="unlock()"><i class="fa fa-lock fa-6x"></i>Unlock</a>
+			</p>
 			<p ng-if="!isCharging">
-				<i class="fa fa-warning fa-5x"></i>
+				<i class="fa fa-warning fa-6x"></i>
 			</p>
 		</div>	
 	</div>
