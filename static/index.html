@@ -8,34 +8,53 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=PT+Sans:400,700">
 	<link rel="stylesheet" href="/css/buttons.min.css">
+	<link rel="stylesheet" href="/css/forms.min.css">
 	<link rel="stylesheet" href="/css/font-awesome.min.css">
 	<link rel="stylesheet" href="/css/style.css">
 
 	<meta name="descrption" content="hacknc app">
 </head>
 <body ng-controller="AppCtrl">
-
-
+	<div id="my_result"></div>
+	
 	<div class="container page index.html">
 
 		<h1>dont unplug me</h1>
 
 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit assumenda deleniti quo ratione ullam, amet laborum quas, eaque nostrum praesentium! Nobis repellendus consequatur qui, velit soluta! Fugit tempora, distinctio mollitia.</p>
 	
-		<div ng-if="!isSupported">Not supported :(</div>
+		<div ng-if="!isSupported">
+			Unfortunately, your browser does not support the Battery API.
+			Supported browsers include Chrome and Firefox.
+		</div>
 
 		<div ng-if="isSupported">
-			
 			<p>
-				<a class="pure-button" ng-if="!locked" ng-click="lock()"><i class="fa fa-unlock"></i> Lock</a>
-				<a class="pure-button" ng-if="locked" ng-click="unlock()"><i class="fa fa-lock"></i> Unlock</a>
+				<form class="pure-form pure-form-aligned">
+					<fieldset>
+						<div class="pure-control-group">
+							<label for="input-phone-number">Mobile number</label>
+							<input id="input-phone-number" type="tel" placeholder="#" ng-model="phoneNumber" ng-disabled="locked">
+						</div>
+
+						<div class="pure-control-group">
+							<label for="input-email">Email address</label>
+							<input id="input-email" type="email" placeholder="@" ng-model="emailAddress" ng-disabled="locked">
+						</div>
+
+						<a class="pure-button" ng-if="!locked" ng-click="lock()"><i class="fa fa-unlock"></i> Lock</a>
+						<a class="pure-button" ng-if="locked" ng-click="unlock()"><i class="fa fa-lock"></i> Unlock</a>
+					</fieldset>
+				</form>
 			</p>
+
 			<p ng-if="!isCharging">
 				<i class="fa fa-warning fa-6x"></i>
 			</p>
 		</div>	
 	</div>
-		
+	
+	<div id="camera-dummy"></div>
 
 	<script src="/js/angular.min.js"></script>
 	<script src="/js/battery.min.js"></script>
@@ -43,6 +62,16 @@
 	<script>
 		angular.module("BatteryApp", [])
 		.controller("AppCtrl", function ($scope, $interval) {
+			// Setup webcam
+			Webcam.attach('#camera-dummy');
+
+			// Setup audio
+			var audio = new Audio();
+			audio.autplay = false;
+			audio.src = '/audio/alert' + (navigator.userAgent.match(/Firefox/) ? '.ogg' : '.mp3');
+			// audio.play()
+
+			// Setup battery
 			var battery = new Battery();
 
 			$scope.isSupported = Battery.isSupported();
@@ -52,7 +81,6 @@
 
 			$interval(function() {
 				battery.getStatus(function(status) {
-					console.log(status)
 					$scope.isCharging = status.charging;
 				});
 			}, 1000/30);
