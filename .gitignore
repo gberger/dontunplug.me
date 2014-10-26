@@ -31,4 +31,4 @@ node_modules
 .lock-wscript
 
 a.txt
-tmp
+tmp/*.jpg
