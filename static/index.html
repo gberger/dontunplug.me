@@ -49,11 +49,9 @@
 							<i class="fa fa-unlock"></i> Lock
 						</a>
 
-						<a class="pure-button button-xlarge" ng-if="locked" ng-click="unlock()">
-							<i class="fa fa-lock"></i> Unlock
+						<a class="pure-button button-xlarge" ng-if="locked" ng-disabled="true">
+							<i class="fa fa-lock"></i> Locked
 						</a>
-
-						{{locked}} {{charging}}
 
 						<p class="warning" ng-if="!locked && !charging">Connect to power source before locking</p>
 					</fieldset>
@@ -108,12 +106,6 @@
 				}
 			}
 
-			$scope.unlock = function() {
-				$scope.locked = false;
-				$scope.alert = false;
-				$scope.untrigger();
-			}
-
 			$scope.trigger = function() {
 				var data = $scope.data;
 
@@ -128,13 +120,9 @@
 				}
 			}
 
-			$scope.untrigger = function() {
-				audio.pause();
-			}
-
 			$scope.submit = function(data) {
 				console.log(data);
-				$http.post('/alert', data);
+				// $http.post('/alert', data);
 			}
 
 		});
