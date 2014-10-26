@@ -1,15 +1,39 @@
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="en" ng-app="BatteryApp">
 <head>
-	<meta charset="UTF-8">
-	<title>Document</title>
+	<meta charset="utf-8">
+	<title>dontunplug.me</title>
+	<meta class="Guilherme Berger">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=PT+Sans:400,700">
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/font-awesome.css">
+	<link rel="stylesheet" href="/css/font-awesome.min.css">
+	<link href="/feed.xml" rel="alternate" type="application/rss+xml" title="RSS Feed" />
+	<meta name="descrption" content="hacknc app">
+	
 </head>
 <body ng-controller="AppCtrl">
-	<div ng-if="!isSupported">Not supported :(</div>
-	<div ng-if="isSupported">Supported! :)</div>
-	{{isCharging}}
 
-	<script src="angular.min.js"></script>
+
+	<div class="container page index.html">
+                <!--<div ng-if="!isSupported">Not supported :(</div>
+		<div ng-if="isSupported">Supported! :)</div>
+		{{isCharging}}-->
+		<div ng-if="!isCharging">
+			<div class="locksize">
+				<i class="fa fa-unlock fa-5x"></i>
+			</div>
+		</div>
+		<div ng-if="isCharging">
+			<div class="locksize">
+				<i class="fa fa-lock fa-5x"></i>
+			</div>
+		</div>
+        
+
+        <script src="angular.min.js"></script>
 	<script src="battery.min.js"></script>
 	<script>
 		angular.module("BatteryApp", [])
@@ -27,6 +51,9 @@
 
  		});
 	</script>
+        
+        </div>
 
 </body>
 </html>
+

@@ -1,0 +1,289 @@
+/*
+YUI 3.6.0 (build 5521)
+Copyright 2012 Yahoo! Inc. All rights reserved.
+Licensed under the BSD License.
+http://yuilibrary.com/license/
+*/
+html{background:#FFF;color:#000;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0}table{border-collapse:collapse;border-spacing:0}fieldset,img{border:0}address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal}ol,ul{list-style:none}caption,th{text-align:left}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}q:before,q:after{content:''}abbr,acronym{border:0;font-variant:normal}sup{vertical-align:text-top}sub{vertical-align:text-bottom}input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit}input,textarea,select{*font-size:100%}legend{color:#000}#yui3-css-stamp.cssreset{display:none}
+
+/* micro-clearfix */
+.clearfix:before, .clearfix:after { content: " "; display: table; } .clearfix:after { clear: both; }
+
+/* GENERAL
+ * -------------------- */
+
+html {
+  overflow-y: scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 100%;
+
+  font-size: 18px;
+  line-height: 1.5em;
+
+  background-color: #ebe8df;
+}
+
+body {
+  color: #1A1A1A;
+  font-family: 'PT Sans', Helvetica, Arial, sans-serif;
+}
+
+img {
+  max-width: 100%;
+}
+
+h1 {
+  font-size: 2em;
+  margin-bottom: 10px;
+  line-height: 1.25em;
+}
+
+h2, dt {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+h3 {
+  font-size: 1.25em;
+  margin-bottom: 10px;
+}
+
+h4 {
+  font-size: 1.125em;
+  margin-bottom: 10px;
+}
+
+dl, dd {
+  border: 0;
+  margin-top: 1em;
+  margin-bottom: 1.5em;
+}
+
+dd {
+  padding-bottom: 1em;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+strong {
+  font-weight: bold;
+}
+
+em {
+  font-style: italic;
+}
+
+p {
+  margin: 1em 0;
+  clear: both;
+}
+
+a {
+  color: #1A1A1A;
+}
+
+h2 a {
+  text-decoration: none;
+}
+
+a:hover {
+  color: #666;
+}
+
+ul, ol {
+  margin-bottom: 15px;
+}
+
+ol {
+  list-style: decimal;
+}
+
+ul {
+  list-style: disc;
+}
+
+li {
+  margin-left: 15px;
+  margin-bottom: 5px;
+}
+
+blockquote {
+  margin: 1em 0 1em 1em;
+  padding-left: 15px;
+  border-left: 3px solid #ccc;
+  font-style: italic;
+}
+
+blockquote p {
+  margin: 0;
+}
+
+p code,
+li code {
+  display: inline;
+  font-family: monospace;
+  font-size: 0.75em;
+  vertical-align: bottom;
+  overflow-x: auto;
+  padding: 2px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.8);
+  position: relative;
+  top: 2px;
+}
+
+hr {
+  border: 0;
+  height: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  margin-top: 1em;
+  margin-bottom: 1.5em;
+}
+
+@media screen and (min-width:960px) {
+  .highlight {
+    margin-left: -4em;
+    margin-right: -4em;
+  }
+}
+
+@media screen and (max-width:960px) {
+  .highlight {
+    margin-left: -1em;
+    margin-right: -1em;
+  }
+}
+
+.highlight {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+pre {
+  font-size: 0.75em;
+  background-color: rgba(35, 36, 31, 0.95);
+  color: #f8f8f2;
+  padding: 1em;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* CONTAINER
+ * -------------------- */
+
+.container {
+  background-color: rgba(245, 245, 245, 0.75);
+  text-align: center;
+}
+
+@media screen and (min-width:960px) {
+  .container {
+    position: relative;
+    -webkit-transform: none;
+    transform: none;
+    top: auto;
+    left: auto;
+    margin: 5em auto;
+    width: 35em;
+    padding: 3em 4em 3em 4em;
+  }
+}
+
+@media screen and (max-width:959px) {
+  .container {
+    padding: 1em;
+  }
+}
+
+/* POST
+ * -------------------- */
+
+.author {
+  text-align: right;
+}
+
+article img {
+  /* center images */
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.post .date {
+  float: left;
+}
+
+/* ARCHIVE
+ * -------------------- */
+
+.archive {
+  margin: 20px 0;
+  color: #666;
+}
+
+.archive li {
+  margin-top: 15px;
+}
+
+.archive a.title,
+.archive a.rss {
+  text-decoration: none;
+  color: #1A1A1A;
+}
+
+.archive a.title:hover,
+.archive a.rss:hover {
+  text-decoration: underline;
+}
+
+.archive .title,
+.archive .date,
+.archive .rss {
+  font-weight: bold;
+}
+
+/* NAVIGATION
+ * -------------------- */
+
+#nav {
+  text-align: right;
+  margin: 0;
+}
+
+#nav li {
+  display: inline-block;
+  list-style: none;
+  margin: 0;
+}
+
+/* PROJECTS
+ * -------------------- */
+
+ul.links,
+ul.links li {
+  display: inline-block;
+  list-style: none;
+  margin: 0;
+}
+
+ul.links li:not(:first-child):before {  
+  content: " Ñ ";  
+}
+
+.technologies {
+  font-size: 1.25em;
+}
+
+ul.technologies,
+ul.technologies li {
+  display: inline-block;
+  margin: 0;
+}
+
+.locksize > i {
+  font-size: 20em;
+}
