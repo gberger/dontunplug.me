@@ -6,13 +6,20 @@ var port = process.env.PORT || 9000;
 
 var mobileAlert = require('./lib/mobile-alert');
 var emailAlert = require('./lib/email-alert');
+var saveImage = require('./lib/save-image');
 
 app.use(express.static(__dirname + '/static'));
+app.use(express.static(__dirname + '/tmp'));
 app.use(bodyParser.json());
 
 app.post('/alert', function(req, res) {
-	mobileAlert(req.body);
-	emailAlert(req.body);
+	if(req.body.image) {
+		req.body.imageFilename = saveImage(req.body.image);
+		req.body.imageUrl = "http://dontunplug.me/" + _.last(req.body.imageFilename.split('/'));
+	}
+	console.log(req.body.imageFilename);
+	// mobileAlert(req.body);
+	// emailAlert(req.body);
 	res.sendStatus(200);
 });
 
