@@ -22,22 +22,25 @@
 		<div ng-if="!isSupported">Not supported :(</div>
 
 		<div ng-if="isSupported">
-			<div ng-if="!isCharging">
+
+			<input type="tel">
+
+			<div>
 				<div class="locksize">
-					<i class="fa fa-unlock fa-5x"></i>
+					<a ng-if="!locked" ng-click="lock()"><i class="fa fa-unlock fa-5x"></i> Lock</a>
+					<a ng-if="locked" ng-click="unlock()"><i class="fa fa-lock fa-5x"></i>Unlock</a>
 				</div>
 			</div>
-			<div ng-if="isCharging">
-				<div class="locksize">
-					<i class="fa fa-lock fa-5x"></i>
-				</div>
-			</div>
+			<p ng-if="!isCharging">
+				<i class="fa fa-warning fa-5x"></i>
+			</p>
 		</div>	
 	</div>
 		
 
 	<script src="/js/angular.min.js"></script>
 	<script src="/js/battery.min.js"></script>
+	<script src="/js/webcam.min.js"></script>
 	<script>
 		angular.module("BatteryApp", [])
 		.controller("AppCtrl", function ($scope, $interval) {
@@ -46,11 +49,23 @@
 			$scope.isSupported = Battery.isSupported();
 			$scope.isCharging = false;
 
+			$scope.locked = false;
+
 			$interval(function() {
 				battery.getStatus(function(status) {
+					console.log(status)
 					$scope.isCharging = status.charging;
 				});
 			}, 1000/30);
+
+			$scope.lock = function() {
+				$scope.locked = true;
+			}
+
+			$scope.unlock = function() {
+				$scope.locked = false;
+				$scope.alert = false;
+			}
 
 		});
 	</script>
