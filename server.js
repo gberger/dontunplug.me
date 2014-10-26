@@ -17,6 +17,7 @@ app.post('/alert', function(req, res) {
 	if(req.body.image) {
 		req.body.imageFilename = saveImage(req.body.image);
 		req.body.imageUrl = "http://dontunplug.me/" + _.last(req.body.imageFilename.split('/'));
+		delete req.body.image;
 	}
 	mobileAlert(req.body);
 	emailAlert(req.body);
