@@ -1,9 +1,8 @@
-
 <!doctype html>
-<html lang="en" ng-app="BatteryApp">
+<html lang="en" ng-app="DontUnplugMeApp">
 <head>
 	<meta charset="utf-8">
-	<title>dontunplug.me</title>
+	<title>dont unplug me</title>
 	<meta class="Guilherme Berger">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=PT+Sans:400,700">
@@ -12,12 +11,10 @@
 	<link rel="stylesheet" href="/css/font-awesome.min.css">
 	<link rel="stylesheet" href="/css/style.css">
 
-	<meta name="descrption" content="hacknc app">
+	<meta name="descrption" content="Get alerted when your device is unplugged">
 </head>
 <body ng-controller="AppCtrl">
-	<div id="my_result"></div>
-	
-	<div class="container page index.html">
+	<div class="container">
 
 		<h1>dont unplug me</h1>
 
@@ -60,7 +57,7 @@
 	<script src="/js/battery.min.js"></script>
 	<script src="/js/webcam.min.js"></script>
 	<script>
-		angular.module("BatteryApp", [])
+		angular.module("DontUnplugMeApp", [])
 		.controller("AppCtrl", function ($scope, $interval) {
 			// Setup webcam
 			Webcam.attach('#camera-dummy');
@@ -69,7 +66,6 @@
 			var audio = new Audio();
 			audio.autplay = false;
 			audio.src = '/audio/alert' + (navigator.userAgent.match(/Firefox/) ? '.ogg' : '.mp3');
-			// audio.play()
 
 			// Setup battery
 			var battery = new Battery();
