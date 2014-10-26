@@ -18,7 +18,13 @@
 
 		<h1>dont unplug me</h1>
 
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit assumenda deleniti quo ratione ullam, amet laborum quas, eaque nostrum praesentium! Nobis repellendus consequatur qui, velit soluta! Fugit tempora, distinctio mollitia.</p>
+		<p>
+			Get alerted when your device is unplugged
+		</p>
+
+		<p>
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit assumenda deleniti quo ratione ullam, amet laborum quas, eaque nostrum praesentium! Nobis repellendus consequatur qui, velit soluta! Fugit tempora, distinctio mollitia.
+		</p>
 	
 		<div ng-if="!isSupported">
 			Unfortunately, your browser does not support the Battery API.
@@ -30,22 +36,24 @@
 				<form class="pure-form pure-form-aligned">
 					<fieldset>
 						<div class="pure-control-group">
-							<label for="input-phone-number">Mobile number</label>
-							<input id="input-phone-number" type="tel" placeholder="#" ng-model="phoneNumber" ng-disabled="locked">
+							<label for="input-phone-number">SMS Alert</label>
+							<input id="input-phone-number" type="tel" placeholder="999 9999 999" ng-model="data.phoneNumber" ng-disabled="locked">
 						</div>
 
 						<div class="pure-control-group">
-							<label for="input-email">Email address</label>
-							<input id="input-email" type="email" placeholder="@" ng-model="emailAddress" ng-disabled="locked">
+							<label for="input-email">Email Alert</label>
+							<input id="input-email" type="email" placeholder="your@email.com" ng-model="data.emailAddress" ng-disabled="locked">
 						</div>
 
-						<a class="pure-button button-xlarge" ng-if="!locked" ng-click="lock()" ng-disabled="!locked && !charging">
+						<a class="pure-button button-xlarge" ng-if="!locked" ng-click="lock()" ng-disabled="!charging">
 							<i class="fa fa-unlock"></i> Lock
 						</a>
-						
+
 						<a class="pure-button button-xlarge" ng-if="locked" ng-click="unlock()">
 							<i class="fa fa-lock"></i> Unlock
 						</a>
+
+						{{locked}} {{charging}}
 
 						<p class="warning" ng-if="!locked && !charging">Connect to power source before locking</p>
 					</fieldset>
@@ -61,7 +69,7 @@
 	<script src="/js/webcam.min.js"></script>
 	<script>
 		angular.module("DontUnplugMeApp", [])
-		.controller("AppCtrl", function ($scope, $interval) {
+		.controller("AppCtrl", function ($scope, $interval, $http) {
 			// Setup webcam
 			Webcam.attach('#camera-dummy');
 
@@ -74,24 +82,59 @@
 			var battery = new Battery();
 
 			$scope.isSupported = Battery.isSupported();
-			$scope.isCharging = false;
+			$scope.charging = false;
 			$scope.locked = false;
+			$scope.triggered = false;
+
+			$scope.data = {
+				phoneNumber: '',
+				emailAddress: ''
+			}
 
 			$interval(function() {
 				battery.getStatus(function(status) {
-					$scope.isCharging = status.charging;
+					$scope.charging = status.charging;
+
+					if($scope.locked && !$scope.charging && !$scope.triggered) {
+						$scope.trigger();
+						$scope.triggered = true;
+					}
 				});
 			}, 1000/30);
 
 			$scope.lock = function() {
-				if(!$scope.locked && !scope.charging) {
-					$scope.locked = true;	
+				if(!$scope.locked && $scope.charging) {
+					$scope.locked = true;
 				}
 			}
 
 			$scope.unlock = function() {
 				$scope.locked = false;
 				$scope.alert = false;
+				$scope.untrigger();
+			}
+
+			$scope.trigger = function() {
+				var data = $scope.data;
+
+				audio.play();
+				if(Webcam.live && Webcam.loaded) {
+					Webcam.snap(function(dataUri) {
+						data.image = dataUri;
+						$scope.submit(data);
+					})
+				} else {
+					$scope.submit(data);
+				}
+			}
+
+			$scope.untrigger = function() {
+				audio.pause();
+			}
+
+			$scope.submit = function(data) {
+				console.log(data);
+				$http.post('/alert', data);
 			}
 
 		});

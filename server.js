@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 
 app.post('/alert', function(req, res) {
 	console.log(req.body);
-	res.end(200);
+	res.sendStatus(200);
 });
 
 app.listen(port);
