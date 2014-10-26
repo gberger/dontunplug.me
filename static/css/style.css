@@ -120,10 +120,10 @@ html {
   }
 }
 
-
-i.fa-6x {
-  font-size: 10em;
+.button-xlarge {
+  font-size: 2em;
 }
+
 
 #camera-dummy { 
   width: 640px; 
@@ -132,4 +132,8 @@ i.fa-6x {
   position: absolute; 
   top: 0; 
   left: 0; 
+}
+
+.warning {
+  color: rgb(202, 60, 60);
 }

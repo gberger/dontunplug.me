@@ -39,14 +39,17 @@
 							<input id="input-email" type="email" placeholder="@" ng-model="emailAddress" ng-disabled="locked">
 						</div>
 
-						<a class="pure-button" ng-if="!locked" ng-click="lock()"><i class="fa fa-unlock"></i> Lock</a>
-						<a class="pure-button" ng-if="locked" ng-click="unlock()"><i class="fa fa-lock"></i> Unlock</a>
+						<a class="pure-button button-xlarge" ng-if="!locked" ng-click="lock()" ng-disabled="!locked && !charging">
+							<i class="fa fa-unlock"></i> Lock
+						</a>
+						
+						<a class="pure-button button-xlarge" ng-if="locked" ng-click="unlock()">
+							<i class="fa fa-lock"></i> Unlock
+						</a>
+
+						<p class="warning" ng-if="!locked && !charging">Connect to power source before locking</p>
 					</fieldset>
 				</form>
-			</p>
-
-			<p ng-if="!isCharging">
-				<i class="fa fa-warning fa-6x"></i>
 			</p>
 		</div>	
 	</div>
@@ -72,7 +75,6 @@
 
 			$scope.isSupported = Battery.isSupported();
 			$scope.isCharging = false;
-
 			$scope.locked = false;
 
 			$interval(function() {
@@ -82,7 +84,9 @@
 			}, 1000/30);
 
 			$scope.lock = function() {
-				$scope.locked = true;
+				if(!$scope.locked && !scope.charging) {
+					$scope.locked = true;	
+				}
 			}
 
 			$scope.unlock = function() {
