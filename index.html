@@ -14,12 +14,14 @@
 	<script>
 		angular.module("BatteryApp", [])
 		.controller("AppCtrl", function ($scope, $interval) {
+			var battery = new Battery();
+
 			$scope.isSupported = Battery.isSupported();
 			$scope.isCharging = false;
 
 			$interval(function() {
-				Battery.getStatus(function(status) {
-					$scope.isCharging = status.isCharging;
+				battery.getStatus(function(status) {
+					$scope.isCharging = status.charging;
 				});
 			}, 1000/30);
 
