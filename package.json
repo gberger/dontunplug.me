@@ -1,0 +1,23 @@
+{
+  "name": "dontunplug.me",
+  "version": "0.1.0",
+  "description": "Get alerted when your device is unplugged",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gberger/dontunplug.me.git"
+  },
+  "author": "Guilherme Berger <guilherme.berger@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gberger/dontunplug.me/issues"
+  },
+  "homepage": "https://github.com/gberger/dontunplug.me",
+  "dependencies": {
+    "express": "^4.10.0"
+  }
+}
