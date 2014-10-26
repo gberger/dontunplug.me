@@ -18,23 +18,26 @@
 
 
 	<div class="container page index.html">
-                <!--<div ng-if="!isSupported">Not supported :(</div>
-		<div ng-if="isSupported">Supported! :)</div>
-		{{isCharging}}-->
-		<div ng-if="!isCharging">
-			<div class="locksize">
-				<i class="fa fa-unlock fa-5x"></i>
-			</div>
-		</div>
-		<div ng-if="isCharging">
-			<div class="locksize">
-				<i class="fa fa-lock fa-5x"></i>
-			</div>
-		</div>
-        
+	
+		<div ng-if="!isSupported">Not supported :(</div>
 
-        <script src="angular.min.js"></script>
-	<script src="battery.min.js"></script>
+		<div ng-if="isSupported">
+			<div ng-if="!isCharging">
+				<div class="locksize">
+					<i class="fa fa-unlock fa-5x"></i>
+				</div>
+			</div>
+			<div ng-if="isCharging">
+				<div class="locksize">
+					<i class="fa fa-lock fa-5x"></i>
+				</div>
+			</div>
+		</div>	
+	</div>
+		
+
+	<script src="/js/angular.min.js"></script>
+	<script src="/js/battery.min.js"></script>
 	<script>
 		angular.module("BatteryApp", [])
 		.controller("AppCtrl", function ($scope, $interval) {
@@ -49,10 +52,8 @@
 				});
 			}, 1000/30);
 
- 		});
+		});
 	</script>
-        
-        </div>
 
 </body>
 </html>
