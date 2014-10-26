@@ -7,27 +7,28 @@
 	<meta class="Guilherme Berger">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=PT+Sans:400,700">
-	<link rel="stylesheet" href="/css/style.css">
-	<link rel="stylesheet" href="/css/font-awesome.css">
+	<link rel="stylesheet" href="/css/buttons.min.css">
 	<link rel="stylesheet" href="/css/font-awesome.min.css">
-	<link href="/feed.xml" rel="alternate" type="application/rss+xml" title="RSS Feed" />
+	<link rel="stylesheet" href="/css/style.css">
+
 	<meta name="descrption" content="hacknc app">
-	
 </head>
 <body ng-controller="AppCtrl">
 
 
 	<div class="container page index.html">
+
+		<h1>dont unplug me</h1>
+
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit assumenda deleniti quo ratione ullam, amet laborum quas, eaque nostrum praesentium! Nobis repellendus consequatur qui, velit soluta! Fugit tempora, distinctio mollitia.</p>
 	
 		<div ng-if="!isSupported">Not supported :(</div>
 
 		<div ng-if="isSupported">
-
-			<input type="tel">
-
+			
 			<p>
-				<a ng-if="!locked" ng-click="lock()"><i class="fa fa-unlock fa-6x"></i> Lock</a>
-				<a ng-if="locked" ng-click="unlock()"><i class="fa fa-lock fa-6x"></i>Unlock</a>
+				<a class="pure-button" ng-if="!locked" ng-click="lock()"><i class="fa fa-unlock"></i> Lock</a>
+				<a class="pure-button" ng-if="locked" ng-click="unlock()"><i class="fa fa-lock"></i> Unlock</a>
 			</p>
 			<p ng-if="!isCharging">
 				<i class="fa fa-warning fa-6x"></i>
